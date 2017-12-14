@@ -20,10 +20,8 @@
 */
 using System.Windows.Controls;
 
-namespace Grid
-{
-    public class ColumnDefinition
-    {
+namespace Grid {
+    public class ColumnDefinition {
         #region -- Fields --
 
         private string bindName;
@@ -34,18 +32,15 @@ namespace Grid
 
         #region -- Getter, Setter --
 
-        public void SetBindName(string arg)
-        {
+        public void SetBindName(string arg) {
             bindName = arg;
         }
 
-        public string GetBindName()
-        {
+        public string GetBindName() {
             return bindName;
         }
 
-        public void SetTitle(string arg)
-        {
+        public void SetTitle(string arg) {
             title = arg;
         }
 
@@ -53,8 +48,7 @@ namespace Grid
 
         #region -- Public --
 
-        public void AddColumn(DataGrid grid)
-        {
+        public void AddColumn(DataGrid grid) {
             DataGridTextColumn add = new DataGridTextColumn();
             add.Header = title;
             add.Binding = new System.Windows.Data.Binding(bindName);
