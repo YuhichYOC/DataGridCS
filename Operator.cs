@@ -22,10 +22,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows.Controls;
 
-namespace Grid
-{
-    public class Operator
-    {
+namespace Grid {
+    public class Operator {
         #region -- Fields --
 
         private DataGrid grid;
@@ -38,23 +36,19 @@ namespace Grid
 
         #region -- Constructor --
 
-        public Operator()
-        {
+        public Operator() {
         }
 
         #endregion -- Constructor --
 
         #region -- Public --
 
-        public void Prepare(DataGrid arg)
-        {
+        public void Prepare(DataGrid arg) {
             grid = arg;
         }
 
-        public void AddColumn(string bindName, string title)
-        {
-            if (columns == null)
-            {
+        public void AddColumn(string bindName, string title) {
+            if (columns == null) {
                 columns = new List<ColumnDefinition>();
             }
             ColumnDefinition add = new ColumnDefinition();
@@ -63,37 +57,32 @@ namespace Grid
             columns.Add(add);
         }
 
-        public void CreateColumns()
-        {
+        public void CreateColumns() {
             grid.CanUserAddRows = false;
             grid.Columns.Clear();
-            foreach (ColumnDefinition item in columns)
-            {
+            foreach (ColumnDefinition item in columns) {
                 item.AddColumn(grid);
             }
         }
 
-        public void Refresh()
-        {
+        public void Refresh() {
             grid.ItemsSource = rows;
         }
 
-        public void Blank()
-        {
+        public void Blank() {
             rows = new ObservableCollection<RowEntity>();
+            grid.ItemsSource = rows;
         }
 
         #endregion -- Public --
 
         #region -- Protected --
 
-        protected void AddRow(RowEntity arg)
-        {
+        protected void AddRow(RowEntity arg) {
             rows.Add(arg);
         }
 
-        protected ColumnDefinition Column(int i)
-        {
+        protected ColumnDefinition Column(int i) {
             return columns[i];
         }
 
