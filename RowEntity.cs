@@ -21,10 +21,8 @@
 using System.Collections.Generic;
 using System.Dynamic;
 
-namespace Grid
-{
-    public class RowEntity : DynamicObject
-    {
+namespace Grid {
+    public class RowEntity : DynamicObject {
         #region -- Fields --
 
         private Dictionary<string, object> data = new Dictionary<string, object>();
@@ -33,26 +31,26 @@ namespace Grid
 
         #region -- Public --
 
-        public override bool TryGetMember(GetMemberBinder binder, out object result)
-        {
-            if (data.TryGetValue(binder.Name, out result))
-            {
+        public override bool TryGetMember(GetMemberBinder binder, out object result) {
+            if (data.TryGetValue(binder.Name, out result)) {
                 return true;
             }
-            else
-            {
+            else {
                 return false;
             }
         }
 
-        public override bool TrySetMember(SetMemberBinder binder, object value)
-        {
+        public bool TryGetMember(string bindName, out object value) {
+            value = data[bindName];
+            return true;
+        }
+        
+        public override bool TrySetMember(SetMemberBinder binder, object value) {
             data[binder.Name] = value;
             return true;
         }
 
-        public bool TrySetMember(string bindName, object value)
-        {
+        public bool TrySetMember(string bindName, object value) {
             data[bindName] = value;
             return true;
         }
